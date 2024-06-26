@@ -39,7 +39,7 @@ function AdminDashboard() {
     const adminPass = formData.get('adminPass')
     // console.log(adminPass)
     try {
-      const response = await fetch('http://localhost:8000/adminCheck', {
+      const response = await fetch('https://victoria-project-api.vercel.app/adminCheck', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ function AdminDashboard() {
     const fetchUserData = async () => {
       try {
         // console.log('Fetching user data for flat number:', flatNumber);
-        const response = await axios.post('http://localhost:8000/api/flatWiseDataRequest', { flatNumber });
+        const response = await axios.post('https://victoria-project-api.vercel.app/flatWiseDataRequest', { flatNumber });
         // console.log('Response from API:', response.data);
         const { user } = response.data;
         setUser(user);
