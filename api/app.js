@@ -15,6 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(cors({origin: process.env.CLIENT_URL}));
 
+app.get('/', ((req, res) => {
+    res.json("Hello")
+}))
+
 app.use('/api/auth', authRoute);
 // app.use('/api/user', userRoute);
 app.use('/api/phoneNumber', phoneNumberRoute);
