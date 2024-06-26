@@ -21,7 +21,7 @@ function Page() {
     const adminPass = formData.get('adminPass')
     console.log(adminPass)
     try {
-      const response = await fetch('http://localhost:8000/adminCheck', {
+      const response = await fetch('https://victoria-project-api.vercel.app/adminCheck', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
