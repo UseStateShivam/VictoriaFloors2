@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function page() {
+function Page() {
 
   const router = useRouter()
   const handleProfileClick = () => {
@@ -99,4 +99,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
