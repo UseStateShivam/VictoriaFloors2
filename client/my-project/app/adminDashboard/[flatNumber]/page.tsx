@@ -1,10 +1,9 @@
 'use client'
-import { useParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React, { FormEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 import { app } from '../../config';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface User {
@@ -28,50 +27,41 @@ interface User {
 
 function AdminDashboard() {
   const router = useRouter();
-  const [isAdmin, setIsAdmin] = useState(false)
-  // const params = useParams();
-  const params = useParams<{ flatNumber: string }>(); 
-  const { flatNumber } = params;
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { flatNumber } = useRouter().query;
   const auth = getAuth(app);
-  const [user, setUser] = useState<User | null>(null); // Specify the type for user state
+  const [user, setUser] = useState<User | null>(null);
 
   const adminCheck = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget)
-    const adminPass = formData.get('adminPass')
-    // console.log(adminPass)
+    const formData = new FormData(e.currentTarget);
+    const adminPass = formData.get('adminPass');
+
     try {
-      const response = await fetch('https://victoriafloors2.onrender.com/adminCheck', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          adminPass
-        })
-      })
-      if(response.ok){
-        setIsAdmin(true)
+      const response = await axios.post('https://victoriafloors2.onrender.com/adminCheck', {
+        adminPass
+      });
+
+      if (response.data.ok) {
+        setIsAdmin(true);
       } else {
-        alert('Wrong admin password')
+        alert('Wrong admin password');
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleBackToView = () => {
-    router.push('/viewProfile')
-  }
+    router.push('/viewProfile');
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // console.log('Fetching user data for flat number:', flatNumber);
         const response = await axios.post('https://victoriafloors2.onrender.com/api/flatWiseDataRequest', { flatNumber });
-        // console.log('Response from API:', response.data);
-        const { user } = response.data;
-        setUser(user);
+        const userData = response.data.user;
+        setUser(userData);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -80,13 +70,12 @@ function AdminDashboard() {
     if (flatNumber) {
       fetchUserData();
     }
-  }, [flatNumber, auth.currentUser]); // Add auth.currentUser to the dependencies array
+  }, [flatNumber, auth.currentUser]);
 
   return (
     <>
       <div className='w-screen h-screen overflow-hidden relative'>
         <div className='w-full h-full -z-[1000000] bg-black absolute'></div>
-        {/* <img src='/vid/69.png' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/> */}
         <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm' width={500} height={300}/>
         <div className='w-[50%] h-[80%] text-xl bg-white bg-opacity-75 rounded-3xl p-10 mx-auto mt-[4.5vw] overflow-auto'>
           <div className='flex justify-between items-center'>
@@ -107,27 +96,15 @@ function AdminDashboard() {
           )}
           {user && isAdmin && (
             <>
-              {user.id && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>User ID</span>: {user.id}</p>
-              )}
-              {user.NameOfOwner && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Name of Owner</span>: {user.NameOfOwner}</p>
-              )}
+              <p className='mt-2 ml-5'><span className='font-semibold'>User ID</span>: {user.id}</p>
+              <p className='mt-2 ml-5'><span className='font-semibold'>Name of Owner</span>: {user.NameOfOwner}</p>
               {user.NameOfTenant && (
                 <p className='mt-2 ml-5'><span className='font-semibold'>Name of Tenant:</span> {user.NameOfTenant}</p>
               )}
-              {user.FlatNo && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Flat Number:</span> {user.FlatNo}</p>
-              )}
-              {user.ResidingSince && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Residing Since:</span> {user.ResidingSince}</p>
-              )}
-              {user.AdharNo && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Adhar Number:</span> {user.AdharNo}</p>
-              )}
-              {user.OwnerContact && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Owner Contact:</span> {user.OwnerContact}</p>
-              )}
+              <p className='mt-2 ml-5'><span className='font-semibold'>Flat Number:</span> {user.FlatNo}</p>
+              <p className='mt-2 ml-5'><span className='font-semibold'>Residing Since:</span> {user.ResidingSince}</p>
+              <p className='mt-2 ml-5'><span className='font-semibold'>Adhar Number:</span> {user.AdharNo}</p>
+              <p className='mt-2 ml-5'><span className='font-semibold'>Owner Contact:</span> {user.OwnerContact}</p>
               {user.TenantContact && (
                 <p className='mt-2 ml-5'><span className='font-semibold'>Tenant Contact:</span> {user.TenantContact}</p>
               )}
@@ -140,12 +117,8 @@ function AdminDashboard() {
               {user.OwnerAddress && (
                 <p className='mt-2 ml-5'><span className='font-semibold'>Owner Address:</span> {user.OwnerAddress}</p>
               )}
-              {user.FourWheelerNo && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Four Wheeler Number:</span> {user.FourWheelerNo}</p>
-              )}
-              {user.TwoWheelerNo && (
-                <p className='mt-2 ml-5'><span className='font-semibold'>Two Wheeler Number:</span> {user.TwoWheelerNo}</p>
-              )}
+              <p className='mt-2 ml-5'><span className='font-semibold'>Four Wheeler Number:</span> {user.FourWheelerNo}</p>
+              <p className='mt-2 ml-5'><span className='font-semibold'>Two Wheeler Number:</span> {user.TwoWheelerNo}</p>
               {user.RestNameAdharContact && (
                 <p className='mt-2 ml-5'><span className='font-semibold'>Name-Adhar-Contact of other members:</span> {user.RestNameAdharContact}</p>
               )}
