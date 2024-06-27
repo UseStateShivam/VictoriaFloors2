@@ -1,12 +1,12 @@
 'use client'
 
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import {app} from '../config'
-import Login from '../login'
+import Login from '../Login'
 import { useRouter } from 'next/navigation'
 
-function page() {
+function Page() {
     const auth = getAuth(app)
     const router = useRouter()
 
@@ -25,4 +25,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
