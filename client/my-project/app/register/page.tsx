@@ -43,9 +43,9 @@ function Page() {
 
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      {/* <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com"/>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link> */}
       <body>
         <div className='bg-black w-screen h-screen overflow-hidden'>
           <div className='text-white z-[1000] absolute w-screen h-screen'>
