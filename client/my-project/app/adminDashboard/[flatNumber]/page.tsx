@@ -29,7 +29,8 @@ interface User {
 function AdminDashboard() {
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false)
-  const params = useParams();
+  // const params = useParams();
+  const params = useParams<{ flatNumber: string }>(); 
   const { flatNumber } = params;
   const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null); // Specify the type for user state
