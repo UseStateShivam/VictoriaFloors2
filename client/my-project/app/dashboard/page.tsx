@@ -25,6 +25,7 @@ import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 import { app } from '../config';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Image from 'next/image';
 
 function Dashboard() {
     const auth = getAuth(app);
@@ -73,7 +74,7 @@ function Dashboard() {
         <>
             <div className='w-screen h-screen overflow-hidden relative'>
                 <div className='w-full h-full -z-[1000000] bg-black absolute'></div>
-                <img src='/vid/69.png' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/>
+                <Image alt='bg' src='/vid/69.png' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/>
                 <div className='w-[65%] h-[80%] text-xl bg-white bg-opacity-75 rounded-3xl p-10 mx-auto mt-[4.5vw] overflow-auto'>
                     <div className='flex justify-between items-center'>
                         <h1 className='font-bold text-3xl'>Welcome to the Dashboard!</h1>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { signInWithPhoneNumber, getAuth, RecaptchaVerifier } from 'firebase/auth';
 import { app } from './config';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Login() {
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -79,7 +80,7 @@ export default function Login() {
 
     return (
         <div className='w-screen h-screen overflow-hidden bg-black'>
-            <img src="/vid/5.png" className=' -z-[10000] object-fill w-[100%] blur-sm'/>
+            <Image alt='' src="/vid/5.png" className='-z-[10000] object-fill w-[100%] blur-sm'/>
             {!otpSent ? (
                 <div id="recaptcha-container" className='z-[1000000] absolute top-10 left-[50vw]'></div> 
             ) : null}

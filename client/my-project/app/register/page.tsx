@@ -3,6 +3,7 @@
 import React, {FormEvent, useState} from 'react'
 import OwnerForm from '../components/OwnerForm'
 import TenantForm from '../components/TenantForm'
+import Image from 'next/image'
 
 function Page() {
   const [showOwnerForm, setshowOwnerForm] = useState(false)
@@ -89,10 +90,10 @@ function Page() {
               </div>
             </div>
             <div className='w-[35%] h-screen absolute right-[10%] bg-[#f8c1a5e1] overflow-hidden'>
-              <img src="/rg.png" alt="rg_img" className='w-[100vw] scale-[200%] -translate-x-[5.5vw] translate-y-[12vw]'/>
+              <Image src="/rg.png" alt="rg_img" className='w-[100vw] scale-[200%] -translate-x-[5.5vw] translate-y-[12vw]'/>
             </div>
           </div>
-            <img src="/registerBg.jpg" alt="bg_img" className='w-screen object-cover blur-sm -z-[10000]'/>
+            <Image src="/registerBg.jpg" alt="bg_img" className='w-screen object-cover blur-sm -z-[10000]'/>
         </div>
       </body>
     </>
