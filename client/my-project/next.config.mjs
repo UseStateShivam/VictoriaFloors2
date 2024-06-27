@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    distDir: 'public'
+    // distDir: 'public'
 };
 
 export default nextConfig;
