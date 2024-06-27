@@ -40,7 +40,7 @@ function AdminDashboard() {
     const adminPass = formData.get('adminPass')
     // console.log(adminPass)
     try {
-      const response = await fetch('https://victoria-project-api.vercel.app/adminCheck', {
+      const response = await fetch('http://localhost:8000/adminCheck', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ function AdminDashboard() {
     const fetchUserData = async () => {
       try {
         // console.log('Fetching user data for flat number:', flatNumber);
-        const response = await axios.post('https://victoria-project-api.vercel.app/flatWiseDataRequest', { flatNumber });
+        const response = await axios.post('http://localhost:8000/api/flatWiseDataRequest', { flatNumber });
         // console.log('Response from API:', response.data);
         const { user } = response.data;
         setUser(user);
@@ -86,7 +86,7 @@ function AdminDashboard() {
       <div className='w-screen h-screen overflow-hidden relative'>
         <div className='w-full h-full -z-[1000000] bg-black absolute'></div>
         {/* <img src='/vid/69.png' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/> */}
-        <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/>
+        <img src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm'/>
         <div className='w-[50%] h-[80%] text-xl bg-white bg-opacity-75 rounded-3xl p-10 mx-auto mt-[4.5vw] overflow-auto'>
           <div className='flex justify-between items-center'>
             <h1 className='font-bold text-3xl mx-auto pb-5'>Welcome to the Dashboard!</h1>

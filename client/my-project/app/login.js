@@ -80,7 +80,7 @@ export default function Login() {
 
     return (
         <div className='w-screen h-screen overflow-hidden bg-black'>
-            <Image alt='' src="/vid/5.png" className='-z-[10000] object-fill w-[100%] blur-sm'/>
+            <img alt='' src="/vid/5.png" className='-z-[10000] object-fill w-[100%] blur-sm'/>
             {!otpSent ? (
                 <div id="recaptcha-container" className='z-[1000000] absolute top-10 left-[50vw]'></div> 
             ) : null}

@@ -22,7 +22,7 @@ function Page() {
     const adminPass = formData.get('adminPass')
     console.log(adminPass)
     try {
-      const response = await fetch('https://victoria-project-api.vercel.app/adminCheck', {
+      const response = await fetch('http://localhost:8000/adminCheck', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -90,10 +90,10 @@ function Page() {
               </div>
             </div>
             <div className='w-[35%] h-screen absolute right-[10%] bg-[#f8c1a5e1] overflow-hidden'>
-              <Image src="/rg.png" alt="rg_img" className='w-[100vw] scale-[200%] -translate-x-[5.5vw] translate-y-[12vw]'/>
+              <img src="/rg.png" alt="rg_img" className='w-[100vw] scale-[200%] -translate-x-[5.5vw] translate-y-[12vw]'/>
             </div>
           </div>
-            <Image src="/registerBg.jpg" alt="bg_img" className='w-screen object-cover blur-sm -z-[10000]'/>
+            <img src="/registerBg.jpg" alt="bg_img" className='w-screen object-cover blur-sm -z-[10000]'/>
         </div>
       </body>
     </>
