@@ -40,7 +40,7 @@ function AdminDashboard() {
     const adminPass = formData.get('adminPass')
     // console.log(adminPass)
     try {
-      const response = await fetch('http://localhost:8000/adminCheck', {
+      const response = await fetch('https://victoriafloors2.onrender.com/adminCheck', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ function AdminDashboard() {
     const fetchUserData = async () => {
       try {
         // console.log('Fetching user data for flat number:', flatNumber);
-        const response = await axios.post('http://localhost:8000/api/flatWiseDataRequest', { flatNumber });
+        const response = await axios.post('https://victoriafloors2.onrender.com/api/flatWiseDataRequest', { flatNumber });
         // console.log('Response from API:', response.data);
         const { user } = response.data;
         setUser(user);

@@ -26,7 +26,7 @@ function TenantForm() {
         const RentAgreementSubmitted =  formData.get(TenantFormLabels[14])
 
         try {
-            const res = await axios.post('http://localhost:8000/auth/register', {
+            const res = await axios.post('https://victoriafloors2.onrender.com/api/auth/register', {
                 NameOfOwner,
                 NameOfTenant,
                 FlatNo,

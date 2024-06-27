@@ -18,7 +18,7 @@ function OwnerForm() {
         const RestNameAdharContact = formData.get(OwnerFormLabels[7])
 
         try{
-            const res = await axios.post('http://localhost:8000/api/auth/register', {
+            const res = await axios.post('https://victoriafloors2.onrender.com/api/auth/register', {
                 NameOfOwner, FlatNo, ResidingSince, AdharNo, OwnerContact, FourWheelerNo, TwoWheelerNo, RestNameAdharContact
             })
             console.log(res.data)

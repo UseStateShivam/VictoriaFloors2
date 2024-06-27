@@ -38,7 +38,7 @@ function Dashboard() {
                 // Check if currentUser is not null before accessing its properties
                 if (auth.currentUser && auth.currentUser.phoneNumber) {
                     const formattedPhoneNumber = `+${auth.currentUser.phoneNumber.replace(/\D/g, '')}`;
-                    const response = await axios.post('http://localhost:8000/api/phoneNumber', { phoneNumber: formattedPhoneNumber });
+                    const response = await axios.post('https://victoriafloors2.onrender.com/api/phoneNumber', { phoneNumber: formattedPhoneNumber });
                     const { user } = response.data;
                     setUser(user);
                 }
