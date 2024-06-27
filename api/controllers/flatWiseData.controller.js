@@ -6,15 +6,15 @@ const prisma = new PrismaClient();
 
 export const flatWiseData = async (req, res) => {
     let { flatNumber } = req.body;
-    // console.log('Received flat number:', flatNumber);  // Log received flat number
+    console.log('Received flat number:', flatNumber);  // Log received flat number
     try {
-        // console.log('Executing DB query for flat number:', flatNumber);
+        console.log('Executing DB query for flat number:', flatNumber);
         const user = await prisma.user.findFirst({
             where: {
                 FlatNo: flatNumber
             }
         });
-        // console.log('User found:', user);
+        console.log('User found:', user);
 
         const flatNumberExists = !!user;
         res.status(200).json({ flatNumberExists, user }); 

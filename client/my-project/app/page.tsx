@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Timeline from '../app/components/Timeline';
+import Timeline from './components/Timeline';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 

@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { FormEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
@@ -27,8 +27,9 @@ interface User {
 
 function AdminDashboard() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const flatNumber = searchParams ? searchParams.get('flatNumber') : null;
   const [isAdmin, setIsAdmin] = useState(false);
-  const { flatNumber } = useRouter().query;
   const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null);
 
@@ -36,13 +37,19 @@ function AdminDashboard() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const adminPass = formData.get('adminPass');
-
+    console.log(adminPass)
     try {
-      const response = await axios.post('https://victoriafloors2.onrender.com/adminCheck', {
-        adminPass
-      });
+    const response = await fetch('https://victoriafloors2.onrender.com/adminCheck', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            adminPass
+        })
+        })
 
-      if (response.data.ok) {
+      if (response.ok) {
         setIsAdmin(true);
       } else {
         alert('Wrong admin password');
@@ -58,6 +65,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     const fetchUserData = async () => {
+        console.log(flatNumber)
       try {
         const response = await axios.post('https://victoriafloors2.onrender.com/api/flatWiseDataRequest', { flatNumber });
         const userData = response.data.user;

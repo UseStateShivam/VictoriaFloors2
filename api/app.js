@@ -25,6 +25,7 @@ app.use('/api/phoneNumber', phoneNumberRoute);
 app.use('/api/flatWiseDataRequest', flatWiseDataRequestRoute);
 
 app.post('/adminCheck', ((req,res) => {
+    // res.json("Hello")
     const {adminPass} = req.body
     // console.log(adminPass);
     // console.log(ADMIN_PASSWORD)
