@@ -1,8 +1,8 @@
 'use client'
 
 import React, {FormEvent, useState} from 'react'
-import OwnerForm from '../components/OwnerForm'
-import TenantForm from '../components/TenantForm'
+import OwnerForm from '../app/components/OwnerForm'
+import TenantForm from '../app/components/TenantForm'
 import Image from 'next/image'
 
 function Page() {
@@ -46,7 +46,6 @@ function Page() {
       {/* <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com"/>
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link> */}
-      <body>
         <div className='bg-black w-screen h-screen overflow-hidden'>
           <div className='text-white z-[1000] absolute w-screen h-screen'>
             <div className='w-[35%] h-[91%] absolute top-[5.3%] left-[10%] border-2 border-white shadow-lg rounded-[3vw] bg-opacity-75 bg-white overflow-auto'>
@@ -95,7 +94,6 @@ function Page() {
           </div>
             <Image width={500} height={300} src="/registerBg.jpg" alt="bg_img" className='w-screen object-cover blur-sm -z-[10000]'/>
         </div>
-      </body>
     </>
   )
 }
