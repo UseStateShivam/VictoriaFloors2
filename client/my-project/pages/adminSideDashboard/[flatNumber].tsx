@@ -1,9 +1,9 @@
-'use client'
+// pages/adminSideDashboard/[flatNumber].tsx
 import { useRouter, useParams } from 'next/navigation';
 import React, { FormEvent, useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
+// import {axios} from 'axios';
 import { getAuth } from 'firebase/auth';
-import { app } from '../../config';
+import { app } from '../../app/config';
 import Image from 'next/image';
 
 interface User {
@@ -81,7 +81,7 @@ function AdminDashboard() {
     <>
       <div className='w-screen h-screen overflow-hidden relative'>
         <div className='w-full h-full -z-[1000000] bg-black absolute'></div>
-        <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm' width={500} height={300} />
+        <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm' width={500} height={300} unoptimized />
         <div className='w-[50%] h-[80%] text-xl bg-white bg-opacity-75 rounded-3xl p-10 mx-auto mt-[4.5vw] overflow-auto'>
           <div className='flex justify-between items-center'>
             <h1 className='font-bold text-3xl mx-auto pb-5'>Welcome to the Dashboard!</h1>
@@ -142,3 +142,23 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard;
+
+// Assuming you have a function to fetch flat numbers
+import axios from 'axios';
+
+export async function fetchFlatNumbers() {
+  try {
+    const response = await axios.get('https://victoriafloors2.onrender.com/api/flatNumbers');
+    return response.data.flatNumbers; // Assume the API returns an array of flat numbers
+  } catch (error) {
+    console.error('Error fetching flat numbers:', error);
+    return [];
+  }
+}
+
+export const generateStaticParams = async () => {
+  const flatNumbers = await fetchFlatNumbers();
+  return flatNumbers.map((flatNumber: string) => ({
+    flatNumber,
+  }));
+};
