@@ -27,8 +27,8 @@ app.use('/api/flatWiseDataRequest', flatWiseDataRequestRoute);
 app.post('/adminCheck', ((req,res) => {
     // res.json("Hello")
     const {adminPass} = req.body
-    // console.log(adminPass);
-    // console.log(ADMIN_PASSWORD)
+    console.log(adminPass);
+    console.log(ADMIN_PASSWORD)
     if(adminPass === ADMIN_PASSWORD) {
         res.send(200).send('Admin Authenticated')
     } else {

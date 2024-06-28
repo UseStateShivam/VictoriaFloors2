@@ -14,7 +14,7 @@ function Page() {
 
   useEffect(() => {
     if (flatNumberSelected) {
-      router.push(`/adminDashboard/${flatNumberSelected}`)
+      router.push(`/adminSideDashboard/${flatNumberSelected}`)
     }
   }, [flatNumberSelected, router])
   

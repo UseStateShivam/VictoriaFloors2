@@ -34,7 +34,7 @@ export default function Login() {
             const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, '')}`;
             console.log('sending phone number', formattedPhoneNumber);
             
-            const response = await axios.post('http://localhost:8000/api/phoneNumber', { phoneNumber: formattedPhoneNumber });
+            const response = await axios.post('https://victoriafloors2.onrender.com/api/phoneNumber', { phoneNumber: formattedPhoneNumber });
             
             const { phoneNumberExists } = response.data;
             console.log('phone number exists', phoneNumberExists);
