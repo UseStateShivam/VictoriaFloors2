@@ -1,6 +1,6 @@
 'use client'
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { FormEvent, useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import React, { FormEvent, useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
 import { app } from '../../config';
@@ -27,9 +27,9 @@ interface User {
 
 function AdminDashboard() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = useParams();
+  const flatNumber = params?.flatNumber as string | undefined; // Explicitly type flatNumber
   const [isAdmin, setIsAdmin] = useState(false);
-  const flatNumber = searchParams?.get('flatNumber');
   const auth = getAuth(app);
   const [user, setUser] = useState<User | null>(null);
 
@@ -37,13 +37,18 @@ function AdminDashboard() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const adminPass = formData.get('adminPass');
+    console.log(adminPass);
+    console.log(flatNumber);
 
     try {
-      const response = await axios.post('https://victoriafloors2.onrender.com/adminCheck', {
-        adminPass
+      const response = await fetch('https://victoriafloors2.onrender.com/adminCheck', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ adminPass }),
       });
-
-      if (response.status) {
+      if (response.ok) {
         setIsAdmin(true);
       } else {
         alert('Wrong admin password');
@@ -57,27 +62,26 @@ function AdminDashboard() {
     router.push('/viewProfile');
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.post('https://victoriafloors2.onrender.com/api/flatWiseDataRequest', { flatNumber });
-        const userData = response.data.user;
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    if (flatNumber) {
-      fetchUserData();
+  const fetchUserData = useCallback(async () => {
+    if (!flatNumber) return;
+    try {
+      const response = await axios.post('https://victoriafloors2.onrender.com/api/flatWiseDataRequest', { flatNumber });
+      const userData = response.data.user;
+      setUser(userData);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
     }
-  }, [flatNumber, auth.currentUser]);
+  }, [flatNumber]);
+
+  useEffect(() => {
+    fetchUserData();
+  }, [fetchUserData]);
 
   return (
     <>
       <div className='w-screen h-screen overflow-hidden relative'>
         <div className='w-full h-full -z-[1000000] bg-black absolute'></div>
-        <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm' width={500} height={300}/>
+        <Image src={'/vid/69.png'} alt='bg' className='object-cover w-screen h-screen -z-[10] absolute blur-sm' width={500} height={300} />
         <div className='w-[50%] h-[80%] text-xl bg-white bg-opacity-75 rounded-3xl p-10 mx-auto mt-[4.5vw] overflow-auto'>
           <div className='flex justify-between items-center'>
             <h1 className='font-bold text-3xl mx-auto pb-5'>Welcome to the Dashboard!</h1>
@@ -87,7 +91,7 @@ function AdminDashboard() {
               <div>
                 <form onSubmit={adminCheck}>
                   <div className='flex flex-col -mt-[15vh] ml-[25vh]'>
-                    <input type="text" placeholder='Enter the admin password' name='adminPass' className='w-fit rounded-3xl px-5 py-2 mt-[12vw]'/>
+                    <input type="text" placeholder='Enter the admin password' name='adminPass' className='w-fit rounded-3xl px-5 py-2 mt-[12vw]' />
                     <button type='submit' className='bg-red-600 w-fit text-white p-3 ml-[15vh] rounded-3xl border-red-900 border-2 mt-5'>Submit</button>
                   </div>
                 </form>
