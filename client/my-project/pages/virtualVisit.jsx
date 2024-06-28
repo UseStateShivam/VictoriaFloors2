@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { visitSrc } from '../constants/visitSrc'
-import Disclaimer from '../components/Disclaimer';
+import { visitSrc } from '../app/constants/visitSrc'
+import Disclaimer from '../app/components/Disclaimer';
 // import './page.module.css'
+import '../styles/globals.css';
 
 function Page() {
     const canvasRef = useRef(null)

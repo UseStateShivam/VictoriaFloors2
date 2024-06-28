@@ -1,5 +1,6 @@
 'use client'
 
+import '../styles/globals.css';
 import React, {FormEvent, useState} from 'react'
 import OwnerForm from '../app/components/OwnerForm'
 import TenantForm from '../app/components/TenantForm'

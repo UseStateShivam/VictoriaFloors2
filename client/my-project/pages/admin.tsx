@@ -1,6 +1,8 @@
 'use client'
+
+import '../styles/globals.css';
 import React, { MouseEvent, useEffect, useState } from 'react'
-import { flats1, flats2 } from '../constants/flats'
+import { flats1, flats2 } from '../app/constants/flats'
 import { useRouter } from 'next/navigation'
 
 function Page() {

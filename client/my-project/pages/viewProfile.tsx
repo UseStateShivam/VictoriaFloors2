@@ -2,9 +2,10 @@
 
 import React, { useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import {app} from '../config'
-import Login from '../login'
+import {app} from '../app/config'
+import Login from '../app/login'
 import { useRouter } from 'next/navigation'
+import '../styles/globals.css';
 
 function Page() {
     const auth = getAuth(app)

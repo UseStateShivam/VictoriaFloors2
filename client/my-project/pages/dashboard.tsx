@@ -20,9 +20,10 @@ interface User {
 }
 
 // Dashboard.js
+import '../styles/globals.css';
 import React, { useEffect, useState } from 'react';
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
-import { app } from '../config';
+import { app } from '../app/config';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
