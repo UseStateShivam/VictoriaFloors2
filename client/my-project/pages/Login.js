@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { signInWithPhoneNumber, getAuth, RecaptchaVerifier } from 'firebase/auth';
-import { app } from './config';
+import { app } from '../app/config';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
