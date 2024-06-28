@@ -4,7 +4,8 @@
       { "src": "client/my-project/build/**", "use": "@vercel/static" }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "/client/my-project/build/$1" }
+      { "src": "/", "dest": "/" },
+      { "src": "/register", "dest": "/" }
     ]
-  }
+}
   
