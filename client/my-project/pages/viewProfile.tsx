@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import {app} from '../app/config'
-import Login from '../app/login'
+import Login from './Login'
 import { useRouter } from 'next/navigation'
 import '../styles/globals.css';
 
