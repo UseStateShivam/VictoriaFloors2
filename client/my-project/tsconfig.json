@@ -36,7 +36,7 @@
     "app/config.js",
     "app/layout.tsx",
     "build/types/**/*.ts"
-, "app/adminDashboard/[flatNumber]/page.jsx"  ],
+, "pages/adminDashboard/[flatNumber]/[flatNumber].js/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]
