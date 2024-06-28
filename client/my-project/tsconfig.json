@@ -35,8 +35,9 @@
     "pages/virtualVisit.jsx",
     "app/config.js",
     "app/layout.tsx",
-    "build/types/**/*.ts"
-, "pages/adminDashboard/[flatNumber]/[flatNumber].js/page.jsx"  ],
+    "build/types/**/*.ts",
+    "pages/adminDashboard/[flatNumber]/[flatNumber].js/page.jsx"
+  ],
   "exclude": [
     "node_modules"
   ]

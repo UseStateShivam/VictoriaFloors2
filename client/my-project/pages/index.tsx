@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Timeline from './components/Timeline';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import Timeline from '../app/components/Timeline';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import '../styles/globals.css';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 function Page() {
 
