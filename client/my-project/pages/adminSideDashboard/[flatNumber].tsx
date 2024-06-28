@@ -5,6 +5,7 @@ import React, { FormEvent, useEffect, useState, useCallback } from 'react';
 import { getAuth } from 'firebase/auth';
 import { app } from '../../app/config';
 import Image from 'next/image';
+import '../../styles/globals.css';
 
 interface User {
   id: string;
@@ -146,19 +147,3 @@ export default AdminDashboard;
 // Assuming you have a function to fetch flat numbers
 import axios from 'axios';
 
-export async function fetchFlatNumbers() {
-  try {
-    const response = await axios.get('https://victoriafloors2.onrender.com/api/flatNumbers');
-    return response.data.flatNumbers; // Assume the API returns an array of flat numbers
-  } catch (error) {
-    console.error('Error fetching flat numbers:', error);
-    return [];
-  }
-}
-
-export const generateStaticParams = async () => {
-  const flatNumbers = await fetchFlatNumbers();
-  return flatNumbers.map((flatNumber: string) => ({
-    flatNumber,
-  }));
-};
