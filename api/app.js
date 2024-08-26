@@ -6,6 +6,7 @@ import phoneNumberRoute from './routes/phoneNumber.route.js';
 import flatWiseDataRequestRoute from './routes/flatWiseData.route.js';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import healthCheckRouter from './routes/healthCheckRoute.js';
 dotenv.config();
 
 const prisma = new PrismaClient();
@@ -33,6 +34,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/phoneNumber', phoneNumberRoute);
 app.use('/api/flatWiseDataRequest', flatWiseDataRequestRoute);
+app.use('/healthCheck', healthCheckRouter);
 
 app.post('/adminCheck', (req, res) => {
   const { adminPass } = req.body;
