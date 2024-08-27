@@ -17,7 +17,7 @@ app.use(express.json());
 
 // Update CORS options to handle multiple origins
 const corsOptions = {
-  origin: [process.env.CLIENT_URL, 'https://usestateshivam.github.io', 'https://usestateshivam.github.io/victoriaDeploy', 'http://localhost:3000'],
+  origin: [process.env.CLIENT_URL, 'https://usestateshivam.github.io', 'https://usestateshivam.github.io/victoriaDeploy', 'http://localhost:3000', "https://victoriafloors2.vercel.app"],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true, // if you need to include cookies in CORS requests
   allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization',
